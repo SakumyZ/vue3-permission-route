@@ -34,9 +34,11 @@ function setPermissionGuard(router: Router) {
 
       if (!isNeedPermission) {
         next('/401')
+        return
       }
 
       next()
+      return
     }
     next()
   })

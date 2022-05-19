@@ -8,6 +8,7 @@ export interface IRouteMeta extends RouteMeta {
   menu: string
   requiresAuth?: boolean
   authority: ROUTE_AUTHORITY[]
+  hideInMenu?: boolean
 }
 
 const baseRouts: RouteRecordRaw[] = [
@@ -35,7 +36,7 @@ const baseRouts: RouteRecordRaw[] = [
   }
 ]
 
-const dynamicRoutes: RouteRecordRaw[] = [
+export const dynamicRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'root',
@@ -48,11 +49,17 @@ const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/home/index.vue')
       },
       {
+        path: 'about',
+        name: 'about',
+        meta: { title: 'About', menu: 'About', requiresAuth: false },
+        component: () => import('@/views/about/index.vue')
+      },
+      {
         path: 'system',
         name: 'system',
         meta: {
-          title: 'Dashboard',
-          menu: 'Dashboard',
+          title: 'System',
+          menu: 'System',
           requiresAuth: true,
           authority: [ROUTE_AUTHORITY.ADMIN]
         },
